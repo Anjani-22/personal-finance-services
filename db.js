@@ -50,7 +50,18 @@ const createTables = async () => {
         password VARCHAR(255) NOT NULL
       );
     `);
-    // ... Create other tables as needed
+    // Create assets table (new)
+    await pool.query(`
+     CREATE TABLE IF NOT EXISTS assets (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       user_id INT NOT NULL,
+       name VARCHAR(255) NOT NULL,
+       value DECIMAL(10,2) NOT NULL,
+       type VARCHAR(255) DEFAULT NULL,
+       date_acquired DATE DEFAULT NULL,
+    
+     );
+   `);
 
     // Create a marker file to indicate successful table creation (optional)
     await fs.writeFile(`./data/${tableName}.txt`, "");

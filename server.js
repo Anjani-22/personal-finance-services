@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors"); // Consider using CORS if needed
 
+const verifyToken = require("verifyToken");
 const db = require("./db"); // Replace with your actual database connection
 const usersRouter = require("./routers/users"); // (Optional)
 const assetsRouter = require("./routers/assets");
@@ -14,6 +15,7 @@ const port = 3000;
 
 // Enable parsing JSON data in request body
 app.use(bodyParser.json());
+app.use(verifyToken);
 
 // Enable CORS if needed (adjust configuration as needed)
 app.use(cors());
